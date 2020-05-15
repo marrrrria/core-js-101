@@ -141,8 +141,20 @@ function isTriangle(a, b, c) {
  *   { top:20, left:20, width: 20, height: 20 }    =>  false
  *
  */
-function doRectanglesOverlap(/* rect1, rect2 */) {
-  throw new Error('Not implemented');
+function doRectanglesOverlap(rect1, rect2) {
+  const { top: y0, left: x0 } = rect1;
+  const x1 = x0 + rect1.width;
+  const y1 = y0 + rect1.height;
+  const { top: y2, left: x2 } = rect2;
+  const x3 = x2 + rect2.width;
+  const y3 = y2 + rect2.height;
+
+  if (x0 > x3
+    || x1 < x2
+    || y0 > y3
+    || y1 < y2) {
+    return false;
+  } return true;
 }
 
 
@@ -306,8 +318,14 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const mas = num.toString().split('');
+  const result = mas.reduce((acc, item) => +acc + +item);
+
+  if (result.toString().length > 1) {
+    return getDigitalRoot(result);
+  }
+  return result;
 }
 
 
@@ -357,8 +375,14 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  let result = '';
+  for (let i = num; i > 0; i = Math.floor(i /= n)) {
+    const mod = i % n;
+    result += `${mod}`;
+  }
+  const res = result.split('').reverse().join('');
+  return +res;
 }
 
 

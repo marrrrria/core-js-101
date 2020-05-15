@@ -299,8 +299,15 @@ function getMovingSum(arr) {
  * [ 'a', 'b', 'c' , null ]  => [ "b", null ]
  * [ "a" ] => []
  */
-function getSecondItems(/* arr */) {
-  throw new Error('Not implemented');
+function getSecondItems(arr) {
+  const result = [];
+  arr.map((item, index) => {
+    if (index % 2 !== 0) {
+      result.push(item);
+    }
+    return item;
+  });
+  return result;
 }
 
 
@@ -318,8 +325,20 @@ function getSecondItems(/* arr */) {
  *  [ 'a', 'b', 'c', null ] => [ 'a', 'b','b', 'c','c','c',  null,null,null,null ]
  *  [ 1,2,3,4,5 ] => [ 1, 2,2, 3,3,3, 4,4,4,4, 5,5,5,5,5 ]
  */
-function propagateItemsByPositionIndex(/* arr */) {
-  throw new Error('Not implemented');
+function propagateItemsByPositionIndex(arr) {
+  if (arr.length === 0) {
+    return arr;
+  }
+  const res = arr.map((item, index) => new Array(index + 1).fill(item));
+  let result = res[0];
+
+  res.map((item, index) => {
+    if (index > 0) {
+      result = result.concat(item);
+    }
+    return item;
+  });
+  return result;
 }
 
 
@@ -418,8 +437,15 @@ function getItemsSum(arr) {
  *  [ -1, 'false', null, 0 ] => 2
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
-function getFalsyValuesCount(/* arr */) {
-  throw new Error('Not implemented');
+function getFalsyValuesCount(arr) {
+  let res = 0;
+  arr.map((item) => {
+    if (!item) {
+      res += 1;
+    }
+    return item;
+  });
+  return res;
 }
 
 /**
@@ -512,8 +538,21 @@ function sortCitiesArray(/* arr */) {
  *           [0,0,0,1,0],
  *           [0,0,0,0,1]]
  */
-function getIdentityMatrix(/* n */) {
-  throw new Error('Not implemented');
+function getIdentityMatrix(n) {
+  const res = new Array(n);
+  res.fill(0);
+  const res2 = new Array(n);
+  res2.fill(res);
+  const result = res2.map((item, index) => {
+    const mas = item.map((el, i) => {
+      if (i === index) {
+        return 1;
+      }
+      return el;
+    });
+    return mas;
+  });
+  return result;
 }
 
 /**

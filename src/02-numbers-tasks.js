@@ -182,8 +182,22 @@ function getParallelipidedDiagonal(a, b, c) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  let res = num;
+  switch (pow) {
+    case 1:
+      res = Math.round(num / 10) * 10;
+      break;
+    case 2:
+      res = Math.round(num / 100) * 100;
+      break;
+    case 3:
+      res = Math.round(num / 1000) * 1000;
+      break;
+    default:
+      break;
+  }
+  return res;
 }
 
 /**
@@ -222,8 +236,8 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  return +value || def;
 }
 
 module.exports = {
