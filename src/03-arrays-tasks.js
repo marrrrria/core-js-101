@@ -243,8 +243,20 @@ function getTail(arr, n) {
  *    +'20,21,22,23,24\n'
  *    +'30,31,32,33,34'
  */
-function toCsvText(/* arr */) {
-  throw new Error('Not implemented');
+function toCsvText(arr) {
+  let str = '';
+  arr.map((item, index) => {
+    if (index !== arr.length - 1) {
+      const res = `${item.join(',')}\n`;
+      str += res;
+      return res;
+    }
+
+    const res = `${item.join(',')}`;
+    str += res;
+    return res;
+  });
+  return str;
 }
 
 /**
@@ -401,8 +413,11 @@ function getPositivesCount(arr) {
  *   [ 'nine','eight','nine','eight'] => [ 'eight','eight','nine','nine']
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
-function sortDigitNamesByNumericOrder(/* arr */) {
-  throw new Error('Not implemented');
+function sortDigitNamesByNumericOrder(arr) {
+  const oneArray = [
+    'zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine',
+  ];
+  return arr.sort((a, b) => oneArray.indexOf(a) - oneArray.indexOf(b));
 }
 
 /**
